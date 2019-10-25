@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>数据页</title>
+    <link th:href="@{/Content/bootstrap-table.css}" rel="stylesheet">
+    <link th:href="@{/common/bootstrap/css/bootstrap.min.css}">
+    <link th:href="@{/Content/bootstrap.css}">
+    <script th:src="@{/common/bootstrap.js/bootstrap.min.js}"></script>
+    <script th:src="@{/common/jquery-3.1.1/jquery-3.1.1.js}"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <table border="1" data-toggle="table" data-pagination="true"  data-side-pagination="client" class="table table-striped">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>password</th>
+                    <th>删除</th>
+                </tr>
+                <tr th:each="user:${usersa}" class="info">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.password}"></td>
+                    <td><input type="button" th:value="删除"/></td>
+                </tr>
+            </table>
+        </div>
+        <a th:href="@{/getUsers(pageNum=1)}">首页</a>
+        <a th:href="@{/getUsers(pageNum=${pageUP})}">上一页</a>
+        <span  th:each="a : ${pageALLINDEX}" th:if="${a}<10">
+            <a th:text="${a}" th:href="@{/getUsers(pageNum=${a})}"></a>
+        </span>
+        <a th:href="@{/getUsers(pageNum=${pagesDown})}">下一页</a>
+    </div>
+</div>
+</body>
+</html>
